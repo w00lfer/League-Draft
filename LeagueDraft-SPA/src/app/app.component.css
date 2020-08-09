@@ -5,7 +5,7 @@
 }
 
 mat-drawer {
-  width: 200px;
+  width: 175px;
 }
 
 mat-drawer-container{
@@ -13,4 +13,8 @@ mat-drawer-container{
 }
 .app-container {
   height: 100%;
+}
+
+.mat-divider {
+  border-top-color: #353535;
 }

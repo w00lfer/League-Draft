@@ -1,0 +1,14 @@
+<mat-nav-list>
+  <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Dashboard</a>
+  <mat-divider></mat-divider>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header (click)="changeDraftExpanderIcon()">
+      <mat-panel-title>
+        Draft  <mat-icon>{{draftExpanderIcon}}</mat-icon>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/live-draft">Live Draft</a>
+    <mat-divider></mat-divider>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/free-draft">Free Draft</a>
+  </mat-expansion-panel>
+</mat-nav-list>

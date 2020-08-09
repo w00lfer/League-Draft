@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'LeagueDraft-SPA';
+  sideBarOpen = false;
+
+  sideBarToggle($event: any) {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
 }
