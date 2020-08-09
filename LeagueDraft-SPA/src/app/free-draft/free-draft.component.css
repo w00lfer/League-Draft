@@ -1,0 +1,15 @@
+.picks div{
+  background-color: white;
+}
+.champions {
+  overflow: auto;
+}
+.champions div {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.champions img {
+  max-width: 60px;
+  max-height: 60px;
+}
+

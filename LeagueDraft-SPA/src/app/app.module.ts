@@ -19,6 +19,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { FreeDraftComponent } from './free-draft/free-draft.component';
 import { LiveDraftComponent } from './live-draft/live-draft.component';
+import {MatCardModule} from "@angular/material/card";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LiveDraftComponent } from './live-draft/live-draft.component';
     MatMenuModule,
     MatSidenavModule,
     MatListModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
