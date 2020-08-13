@@ -3,13 +3,47 @@
 }
 .champions {
   overflow: auto;
+  padding-top:30px;
 }
 .champions div {
-  margin-top: 10px;
-  margin-left: 10px;
+  padding: 20px 20px 20px 20px;
+  box-sizing: border-box;
 }
-.champions img {
-  max-width: 60px;
-  max-height: 60px;
+.champions div img {
+  width:60px;
+  height: 60px;
+}
+.search-form-field {
 }
 
+.red-team.picks div {
+  background-color: #BE2038;
+}
+.blue-team.picks div {
+}
+.blue-team.picks div img{
+}
+
+.red-team-name {
+  background-color: #BE2038;
+  opacity: 50%;
+}
+.blue-team-name {
+  background-color: #0A4264;
+  opacity: 50%;
+}
+.team-name-and-timer-container{
+  border: 1px solid black;
+}
+.picks-and-champions-container{
+  border: 1px solid black;
+}
+.champions-and-search{
+  background-color: #1F1F1F;
+
+  border: 1px solid black;
+}
+.search-champion-form-field{
+  padding-left:10px;
+  padding-top:10px;
+}

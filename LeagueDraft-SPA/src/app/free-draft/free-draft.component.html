@@ -2,64 +2,62 @@
   <div fxFlex="90" fxLayout="row" fxLayoutAlign="center">
     <div fxFlex="80" fxLayout="column">
       <div fxLayout="row" fxFlex="10" class="team-name-and-timer-container">
-        <div fxFlex="40" class="team-name" style="background-color:red" fxLayoutAlign="center center">
+        <div fxFlex="40" class="blue-team-name"  fxLayoutAlign="center center">
           <p>Team 1</p>
         </div>
         <div fxFlex="20" class="timer" style="background-color:green" fxLayoutAlign="center center">
           <p>0:30</p>
         </div>
-        <div fxFlex="40" class="team-name" style="background-color:blue" fxLayoutAlign="center center">
+        <div fxFlex="40" class="red-team-name" fxLayoutAlign="center center">
           <p>Team 2</p>
         </div>
       </div>
       <div fxLayout="row" fxFlex="90" class="picks-and-champions-container">
         <div fxLayout="column" fxFlex="10" class="blue-team picks" >
           <div fxFlex="20">
-
+            <img fxFlex="grow" fxFlexFill src="assets/img/ChampionsTiles/Sett_0.jpg"  />
           </div>
-          <mat-divider></mat-divider>
           <div fxFlex="20">
-
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
           </div>
-          <mat-divider></mat-divider>
           <div fxFlex="20">
-
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
           </div>
-          <mat-divider></mat-divider>
           <div fxFlex="20">
-
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
           </div>
-          <mat-divider></mat-divider>
           <div fxFlex="20">
-
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
           </div>
         </div>
-        <div fxLayout="row wrap" fxFlex="80" Flex class="champions" style="background-color:yellow">
-          <div fxFlex="10" >
-            <img src="assets/img/Champions/Ahri.png"/>
+        <div fxLayout="column" fxFlex="80" class="champions-and-search" >
+          <div fxFlex="5">
+            <mat-form-field fxFlexOffset="" color="accent" appearance="fill" class="search-champion-form-field">
+              <mat-label>Search</mat-label>
+              <input  matInput type="text" >
+            </mat-form-field>
           </div>
-
-
+          <div fxLayout="row wrap" fxFlex="95" class="champions"  fxLayoutAlign="center">
+            <div  *ngFor="let dummy of ' '.repeat(50).split(''), let x = index">
+              <img  src="assets/img/Champions/Ahri.png"/>
+            </div>
+          </div>
         </div>
         <div fxLayout="column" fxFlex="10" class="red-team picks">
           <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Ahri_0.jpg" />
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
           </div>
-          <mat-divider></mat-divider>
+          <div fxFlex="20">
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Nidalee_0.jpg"/>
+          </div>
+          <div fxFlex="20">
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Ahri_0.jpg"/>
+          </div>
+          <div fxFlex="20">
+            <img fxFlex="grow" src="assets/img/ChampionsTiles/Nami_0.jpg"/>
+          </div>
           <div fxFlex="20">
             <img fxFlex="grow" src="assets/img/ChampionsTiles/Lucian_0.jpg"/>
-          </div>
-          <mat-divider></mat-divider>
-          <div fxFlex="20">
-
-          </div>
-          <mat-divider></mat-divider>
-          <div fxFlex="20">
-
-          </div>
-          <mat-divider></mat-divider>
-          <div fxFlex="20">
-
           </div>
         </div>
       </div>
