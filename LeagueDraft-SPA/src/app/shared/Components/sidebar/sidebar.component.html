@@ -11,4 +11,13 @@
     <mat-divider></mat-divider>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/free-draft">Free Draft</a>
   </mat-expansion-panel>
+  <mat-divider></mat-divider>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header (click)="changeAdminExpanderIcon()">
+      <mat-panel-title>
+        Admin  <mat-icon>{{adminExpanderIcon}}</mat-icon>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/admin/champions">Champions</a>
+  </mat-expansion-panel>
 </mat-nav-list>

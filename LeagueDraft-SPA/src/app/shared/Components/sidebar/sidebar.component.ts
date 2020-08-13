@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   public draftExpanderIcon:string = 'keyboard_arrow_down'
+  public adminExpanderIcon:string = 'keyboard_arrow_down'
   public draftExpanderOpen: boolean = false;
+  public adminExpanderOpen: boolean = false;
 
   constructor() { }
 
@@ -20,4 +22,9 @@ export class SidebarComponent implements OnInit {
     this.draftExpanderIcon = this.draftExpanderOpen? 'keyboard_arrow_up' : 'keyboard_arrow_down';
   }
 
+  changeAdminExpanderIcon(): void
+  {
+    this.adminExpanderOpen = !this.adminExpanderOpen;
+    this.adminExpanderIcon = this.adminExpanderOpen? 'keyboard_arrow_up' : 'keyboard_arrow_down';
+  }
 }
