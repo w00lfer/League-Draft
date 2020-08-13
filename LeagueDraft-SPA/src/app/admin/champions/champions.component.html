@@ -1,0 +1,52 @@
+<mat-card>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+     <ng-container matColumnDef="position">
+       <th mat-header-cell *matHeaderCellDef>#</th>
+       <td mat-cell *matCellDef="let row">
+         <mat-checkbox (click)="$event.stopPropagation()"
+                       (change)="$event ? selection.toggle(row) : null"
+                       [checked]="selection.isSelected(row)">
+         </mat-checkbox>
+       </td>
+     </ng-container>
+    <ng-container matColumnDef="championName">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="championIcon">
+      <th mat-header-cell *matHeaderCellDef>Icon</th>
+      <td mat-cell *matCellDef="let element">
+        <img src="{{element.iconUrl}}"/>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="addChampion">
+      <th mat-header-cell *matHeaderCellDef>
+        <a mat-icon-button color="primary" (click)="addChampion()">
+          <mat-icon>add_circle</mat-icon>
+        </a>
+      </th>
+      <td mat-cell *matCellDef="let champion"> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editChampion">
+      <th mat-header-cell *matHeaderCellDef>
+        <a mat-icon-button color="primary" (click)="editChampion()">
+          <mat-icon>edit</mat-icon>
+        </a>
+      </th>
+      <td mat-cell *matCellDef="let champion"> </td>
+    </ng-container>
+
+    <ng-container  matColumnDef="deleteChampion">
+      <th mat-header-cell *matHeaderCellDef >
+        <a mat-icon-button color="primary" (click)="deleteChampion()">
+          <mat-icon>delete</mat-icon>
+        </a>
+      </th>
+      <td mat-cell *matCellDef="let champion"> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
+  </table>
+</mat-card>
