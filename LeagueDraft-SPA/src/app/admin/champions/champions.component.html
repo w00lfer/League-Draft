@@ -13,10 +13,16 @@
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element">{{element.name}}</td>
     </ng-container>
-    <ng-container matColumnDef="championIcon">
+    <ng-container matColumnDef="championTileIcon">
       <th mat-header-cell *matHeaderCellDef>Icon</th>
       <td mat-cell *matCellDef="let element">
         <img src="{{element.iconUrl}}"/>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="championIcon">
+      <th mat-header-cell *matHeaderCellDef>Icon</th>
+      <td mat-cell *matCellDef="let element">
+        <img src="{{element.tileIconUrl}}"/>
       </td>
     </ng-container>
     <ng-container matColumnDef="addChampion">

@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {SelectionModel} from "@angular/cdk/collections";
+import {ChampionService} from "../../_services/champion.service";
+import {ChampionInfo} from "../../_models/ChampionInfo";
 
 export interface Champion {
   name: string;
   position: number;
   iconUrl: string;
 }
-const ELEMENT_DATA: Champion[] = [
-  {position: 1, name: 'Ahri', iconUrl: 'assets/img/Champions/Ahri.png'},
-  {position: 2, name: 'Nami', iconUrl: 'assets/img/Champions/Nami.png'},
-  {position: 3, name: 'Sett', iconUrl: 'assets/img/Champions/Sett.png'},
-  {position: 4, name: 'Lucian', iconUrl: 'assets/img/Champions/Lucian.png'},
+const TableData: ChampionInfo[] = [
 ]
 
 @Component({
@@ -19,13 +17,23 @@ const ELEMENT_DATA: Champion[] = [
   styleUrls: ['./champions.component.css']
 })
 export class ChampionsComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'championName', 'championIcon', 'addChampion', 'editChampion', 'deleteChampion'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['position', 'championName', 'championIcon', 'championTileIcon', 'addChampion', 'editChampion', 'deleteChampion'];
+  dataSource: ChampionInfo[] = []
   selection = new SelectionModel<Champion>(false, []);
 
-  constructor() { }
+  constructor(private championService: ChampionService) { }
 
   ngOnInit(): void {
+    this.getChampionsInfo();
+    console.log(this.dataSource)
+  }
+
+  getChampionsInfo() {
+    this.championService.getChampionsInfo().subscribe((champions: ChampionInfo[]) => {
+      this.dataSource = champions;
+    }, error => {
+      console.log(error);
+    });
   }
 
   addChampion() {
