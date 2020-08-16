@@ -3,15 +3,19 @@
 }
 .champions {
   overflow: auto;
-  padding-top:30px;
+  margin-top:30px;
 }
 .champions div {
-  padding: 20px 20px 20px 20px;
+  margin: 20px 20px 20px 20px;
   box-sizing: border-box;
+  width: 96px;
 }
+
+
+
 .champions div img {
-  width:60px;
-  height: 60px;
+  width:72px;
+  height: 72px;
 }
 .search-form-field {
 }
@@ -20,6 +24,7 @@
   background-color: #BE2038;
 }
 .blue-team.picks div {
+  background-color: #0A4264;
 }
 .blue-team.picks div img{
 }
@@ -47,3 +52,9 @@
   padding-left:10px;
   padding-top:10px;
 }
+.pick-border{
+  border: 1px solid black;
+}
+/*.champions .cdk-drag-placeholder {*/
+/*  display:none !important;*/
+/*}*/

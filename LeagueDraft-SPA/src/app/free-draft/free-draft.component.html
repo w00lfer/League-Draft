@@ -13,51 +13,74 @@
         </div>
       </div>
       <div fxLayout="row" fxFlex="90" class="picks-and-champions-container">
-        <div fxLayout="column" fxFlex="10" class="blue-team picks" >
-          <div fxFlex="20">
-            <img fxFlex="grow" fxFlexFill src="assets/img/ChampionsTiles/Sett_0.jpg"  />
+        <div cdkDropList
+             [cdkDropListData]="bluePicks"
+             [cdkDropListConnectedTo]="[bluePicksList, championsList]"
+             #bluePicksList="cdkDropList"
+             (cdkDropListDropped)="drop($event)"
+             fxLayout="column" fxFlex="10" class="blue-team picks" >
+          <div fxFlex="20" *ngFor="let champion of bluePicks" cdkDrag>
+            <img fxFlex="grow" src="{{champion.tileIconUrl}}"/>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
+          <div fxFlex="20" *ngIf="bluePicks.length < 1" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 1</p>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
+          <div fxFlex="20" *ngIf="bluePicks.length < 2" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 2</p>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
+          <div  fxFlex="20" *ngIf="bluePicks.length < 3" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 3</p>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
+          <div fxFlex="20" *ngIf="bluePicks.length < 4" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 4</p>
+          </div>
+          <div fxFlex="20" *ngIf="bluePicks.length < 5" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 5</p>
           </div>
         </div>
         <div fxLayout="column" fxFlex="80" class="champions-and-search" >
           <div fxFlex="5">
             <mat-form-field fxFlexOffset="" color="accent" appearance="fill" class="search-champion-form-field">
               <mat-label>Search</mat-label>
-              <input  matInput type="text" >
+              <input  matInput type="text" [(ngModel)]="championsSearchInput" >
             </mat-form-field>
           </div>
-          <div fxLayout="row wrap" fxFlex="95" class="champions"  fxLayoutAlign="center">
-            <div  *ngFor="let dummy of ' '.repeat(50).split(''), let x = index">
-              <img  src="assets/img/Champions/Ahri.png"/>
+          <div cdkDropList
+               [cdkDropListData]="championsInfo"
+               [cdkDropListConnectedTo]="[redPicksList, bluePicksList]"
+               #championsList="cdkDropList"
+               (cdkDropListDropped)="drop($event)"
+               cdkDropListSortingDisabled fxLayout="row wrap" fxFlex="95" class="champions"  fxLayoutAlign="center"
+            <div  *ngFor="let champion of championsInfo | ChampionsFilter: championsSearchInput" cdkDrag >
+              <img  src="{{champion.iconUrl}}"/>
+              <p>{{champion.name}}</p>
             </div>
           </div>
         </div>
-        <div fxLayout="column" fxFlex="10" class="red-team picks">
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Sett_0.jpg" />
+        <div cdkDropList
+             [cdkDropListData]="redPicks"
+             [cdkDropListConnectedTo]="[bluePicksList, championsList]"
+             #redPicksList="cdkDropList"
+             (cdkDropListDropped)="drop($event)"
+             fxLayout="column" fxFlex="10" class="red-team picks" cdkDropList
+        CdkList>
+          <div fxFlex="20" *ngFor="let champion of redPicks" cdkDrag>
+            <img fxFlex="grow" src="{{champion.tileIconUrl}}"/>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Nidalee_0.jpg"/>
+          <div fxFlex="20" *ngIf="redPicks.length < 1" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 1</p>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Ahri_0.jpg"/>
+          <div fxFlex="20" *ngIf="redPicks.length < 2" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 2</p>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Nami_0.jpg"/>
+          <div  fxFlex="20" *ngIf="redPicks.length < 3" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 3</p>
           </div>
-          <div fxFlex="20">
-            <img fxFlex="grow" src="assets/img/ChampionsTiles/Lucian_0.jpg"/>
+          <div fxFlex="20" *ngIf="redPicks.length < 4" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 4</p>
+          </div>
+          <div fxFlex="20" *ngIf="redPicks.length < 5" class="pick-border" fxLayoutAlign="center center">
+            <p>Summoner 5</p>
           </div>
         </div>
       </div>

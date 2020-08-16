@@ -25,6 +25,10 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import { ChampionsComponent } from './admin/champions/champions.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { HttpClientModule} from '@angular/common/http';
+import { ChampionsFilterPipe } from './_pipes/champions-filter.pipe'
+import {FormsModule} from "@angular/forms";
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -35,7 +39,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     SidebarComponent,
     FreeDraftComponent,
     LiveDraftComponent,
-    ChampionsComponent
+    ChampionsComponent,
+    ChampionsFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,10 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    HttpClientModule,
+    FormsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
