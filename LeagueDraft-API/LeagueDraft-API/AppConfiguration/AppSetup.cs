@@ -1,5 +1,11 @@
-﻿using FluentValidation.AspNetCore;
+﻿using AutoMapper;
+using FluentValidation.AspNetCore;
+using LeagueDraft_API.Mappings;
 using LeagueDraft_API.Models;
+using LeagueDraft_API.Repositories;
+using LeagueDraft_API.Repositories.Interfaces;
+using LeagueDraft_API.Services;
+using LeagueDraft_API.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +13,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.IO;
-using System.Reflection;
 using System.Text;
 
 namespace LeagueDraft_API.AppConfiguration
@@ -57,16 +60,18 @@ namespace LeagueDraft_API.AppConfiguration
 
                 var securityRequirement = new OpenApiSecurityRequirement();
                 securityRequirement.Add(securitySchema, new[] {"Bearer"});
-                s.AddSecurityRequirement(securityRequirement);
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                s.IncludeXmlComments(xmlPath);
+                //s.AddSecurityRequirement(securityRequirement);
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //s.IncludeXmlComments(xmlPath);
             });
         }
 
         private static void AddDI(this IServiceCollection services)
         {
-
+            services.AddScoped<IChampionService, ChampionService>();
+            services.AddScoped<IChampionRepository, ChampionRepository>();
+            services.AddAutoMapper(typeof(MappingProfile));
         }
 
         private static void AddAuthenticationWithJwt(this IServiceCollection services)

@@ -1,11 +1,10 @@
+using LeagueDraft_API.AppConfiguration;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading.Tasks;
-using LeagueDraft_API.AppConfiguration;
-using LeagueDraft_API.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace LeagueDraft_API
 {

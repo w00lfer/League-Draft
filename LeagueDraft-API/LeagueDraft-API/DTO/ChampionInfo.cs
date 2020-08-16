@@ -1,8 +1,7 @@
-﻿namespace LeagueDraft_API.Models
+﻿namespace LeagueDraft_API.DTO
 {
-    public class Champion
+    public class ChampionInfo
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string IconUrl { get; set; }
         public string TileIconUrl { get; set; }
