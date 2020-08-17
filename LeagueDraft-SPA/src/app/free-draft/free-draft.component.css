@@ -11,13 +11,9 @@
   width: 96px;
 }
 
-
-
 .champions div img {
   width:72px;
   height: 72px;
-}
-.search-form-field {
 }
 
 .red-team.picks div {
@@ -26,9 +22,6 @@
 .blue-team.picks div {
   background-color: #0A4264;
 }
-.blue-team.picks div img{
-}
-
 .red-team-name {
   background-color: #BE2038;
   opacity: 50%;
@@ -55,6 +48,75 @@
 .pick-border{
   border: 1px solid black;
 }
-/*.champions .cdk-drag-placeholder {*/
-/*  display:none !important;*/
-/*}*/
+.picks div{
+  display: flex;
+}
+.champions .cdk-drag-placeholder{
+  display: none
+}
+
+.map-container{
+  width: 384px;
+  height: 384px;
+  max-width: 100%;
+  position: relative;
+
+}
+
+
+.map-container .map{
+  position: absolute ;
+  z-index: 1;
+  width: 384px;
+  height: 384px;
+  border: 1px solid #242424;
+}
+.champion-inside-map{
+  height: 36px;
+  width: 36px;
+  position: absolute;
+  z-index: 2;
+  display:inline;
+  padding:3px;
+}
+.R1 {
+  top: 5%;
+  right: 5%;
+}
+.R2 {
+  top: 5%;
+  right: 20%;
+}
+.R3 {
+  top: 5%;
+  right: 35%;
+}
+.R4 {
+  top: 20%;
+  right: 5%;
+}
+.R5 {
+  top: 35%;
+  right: 5%;
+}
+.B1 {
+  bottom: 5%;
+  left: 5%
+}
+.B2 {
+  bottom: 5%;
+  left: 20%
+}
+.B3 {
+  bottom: 5%;
+  left: 35%
+}
+.B4{
+  bottom: 20%;
+  left: 5%
+}
+.B5{
+  bottom: 35%;
+  left: 5%
+}
+

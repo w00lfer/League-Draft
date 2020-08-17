@@ -47,5 +47,8 @@ export class ChampionsComponent implements OnInit {
 
   }
 
+  trackByName(name: string, champion: ChampionInfo) : string {
+    return champion.name;
+  }
 
 }

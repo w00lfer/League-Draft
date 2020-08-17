@@ -1,15 +1,18 @@
 <div fxLayout="column" fxFlexFill fxLayoutAlign="center">
   <div fxFlex="90" fxLayout="row" fxLayoutAlign="center">
-    <div fxFlex="80" fxLayout="column">
+    <div fxFlex="65" fxLayout="column">
       <div fxLayout="row" fxFlex="10" class="team-name-and-timer-container">
-        <div fxFlex="40" class="blue-team-name"  fxLayoutAlign="center center">
-          <p>Team 1</p>
+        <div fxFlex="50" class="blue-team-name"  fxLayoutAlign="center center">
+          <mat-form-field color="accent" appearance="{{blueTeamNameCanEdit ? 'fill' : 'none'}}" class="search-champion-form-field" (keyup.enter)="blueTeamNameCanEdit = !blueTeamNameCanEdit">
+            <input  matInput type="text" [(ngModel)]="blueTeamName" [readonly]="!blueTeamNameCanEdit" [placeholder]="redTeamName">
+            <button mat-icon-button matSuffix (click)="blueTeamNameCanEdit = !blueTeamNameCanEdit"> <mat-icon>edit</mat-icon></button>
+          </mat-form-field>
         </div>
-        <div fxFlex="20" class="timer" style="background-color:green" fxLayoutAlign="center center">
-          <p>0:30</p>
-        </div>
-        <div fxFlex="40" class="red-team-name" fxLayoutAlign="center center">
-          <p>Team 2</p>
+        <div fxFlex="50" class="red-team-name"  fxLayoutAlign="center center">
+          <mat-form-field color="accent" appearance="{{redTeamNameCanEdit ? 'fill' : 'none'}}" class="search-champion-form-field" (keyup.enter)="redTeamNameCanEdit = !redTeamNameCanEdit">
+            <input  matInput type="text" [(ngModel)]="redTeamName" [readonly]="!redTeamNameCanEdit" [placeholder]="blueTeamName">
+            <button mat-icon-button matSuffix (click)="redTeamNameCanEdit = !redTeamNameCanEdit"> <mat-icon>edit</mat-icon></button>
+          </mat-form-field>
         </div>
       </div>
       <div fxLayout="row" fxFlex="90" class="picks-and-champions-container">
@@ -17,10 +20,13 @@
              [cdkDropListData]="bluePicks"
              [cdkDropListConnectedTo]="[bluePicksList, championsList]"
              #bluePicksList="cdkDropList"
-             (cdkDropListDropped)="drop($event)"
+             (cdkDropListDropped)="drop(championsInfo, $event)"
+             [cdkDropListEnterPredicate]="canEnterPicksContainer(bluePicks)"
              fxLayout="column" fxFlex="10" class="blue-team picks" >
           <div fxFlex="20" *ngFor="let champion of bluePicks" cdkDrag>
             <img fxFlex="grow" src="{{champion.tileIconUrl}}"/>
+            <img *cdkDragPreview src="{{champion.iconUrl}}">
+            <img *cdkDragPlaceholder/>
           </div>
           <div fxFlex="20" *ngIf="bluePicks.length < 1" class="pick-border" fxLayoutAlign="center center">
             <p>Summoner 1</p>
@@ -49,11 +55,12 @@
                [cdkDropListData]="championsInfo"
                [cdkDropListConnectedTo]="[redPicksList, bluePicksList]"
                #championsList="cdkDropList"
-               (cdkDropListDropped)="drop($event)"
-               cdkDropListSortingDisabled fxLayout="row wrap" fxFlex="95" class="champions"  fxLayoutAlign="center"
-            <div  *ngFor="let champion of championsInfo | ChampionsFilter: championsSearchInput" cdkDrag >
+               (cdkDropListDropped)="drop(championsInfo,$event)"
+               cdkDropListSortingDisabled fxLayout="row wrap" fxFlex="95" class="champions"  fxLayoutAlign="center">
+            <div  *ngFor="let champion of championsInfo | ChampionsFilter: championsSearchInput" cdkDrag [cdkDragData]="champion" >
               <img  src="{{champion.iconUrl}}"/>
               <p>{{champion.name}}</p>
+              <img *cdkDragPlaceholder/>
             </div>
           </div>
         </div>
@@ -61,11 +68,13 @@
              [cdkDropListData]="redPicks"
              [cdkDropListConnectedTo]="[bluePicksList, championsList]"
              #redPicksList="cdkDropList"
-             (cdkDropListDropped)="drop($event)"
-             fxLayout="column" fxFlex="10" class="red-team picks" cdkDropList
-        CdkList>
+             (cdkDropListDropped)="drop(championsInfo, $event)"
+             fxLayout="column" fxFlex="10" class="red-team picks"
+             [cdkDropListEnterPredicate]="canEnterPicksContainer(redPicks)">
           <div fxFlex="20" *ngFor="let champion of redPicks" cdkDrag>
             <img fxFlex="grow" src="{{champion.tileIconUrl}}"/>
+            <img *cdkDragPreview src="{{champion.iconUrl}}">
+            <img *cdkDragPlaceholder/>
           </div>
           <div fxFlex="20" *ngIf="redPicks.length < 1" class="pick-border" fxLayoutAlign="center center">
             <p>Summoner 1</p>
@@ -85,5 +94,12 @@
         </div>
       </div>
     </div>
+    <div fxFlex="25" fxLayoutAlign="end center">
+        <div class="map-container">
+          <img class="map" src="assets/img/Maps/SummonersRift.png"/>
+          <img class="champion-inside-map" class="R{{i+1}}" *ngFor="let champion of redPicks; index as i" src="{{champion.iconUrl}}" cdkDragBoundary=".map-container" cdkDrag />
+          <img class="champion-inside-map" class="B{{i+1}}" *ngFor="let champion of bluePicks; index as i" src="{{champion.iconUrl}}" cdkDragBoundary=".map-container" cdkDrag />
+    </div>
+  </div>
   </div>
 </div>
