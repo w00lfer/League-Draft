@@ -1,3 +1,7 @@
 mat-panel-title mat-icon {
   padding-left: 20px;
 }
+
+mat-expansion-panel{
+  box-shadow: none !important;
+}
