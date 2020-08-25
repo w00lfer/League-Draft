@@ -6,6 +6,7 @@ namespace LeagueDraft_API.Services.Interfaces
 {
     public interface IChampionService
     {
-        Task<List<ChampionInfo>> GetChampionsInfos();
+        Task<List<ChampionInfoDTO>> GetChampionsInfos();
+        Task<ChampionInfoDTO> GetChampionInfoByRiotChampionId(int riotChampionId);
     }
 }

@@ -23,9 +23,11 @@ namespace LeagueDraft_API.AppConfiguration
         {
             AddDatabaseAndIdentity(services, configuration);
             AddAuthenticationWithJwt(services);
-            AddDI(services);
+            AddDI(services, configuration);
             AddSwagger(services);
-            services.AddControllers().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services
+                .AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         private static void AddDatabaseAndIdentity(this IServiceCollection services, IConfiguration configuration)
@@ -67,10 +69,13 @@ namespace LeagueDraft_API.AppConfiguration
             });
         }
 
-        private static void AddDI(this IServiceCollection services)
+        private static void AddDI(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IChampionService, ChampionService>();
             services.AddScoped<IChampionRepository, ChampionRepository>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddHttpClient<ISummonerService, SummonerService>(c =>
+                c.DefaultRequestHeaders.Add("X-Riot-Token", configuration.GetValue<string>("X-Riot-Token")));
             services.AddAutoMapper(typeof(MappingProfile));
         }
 

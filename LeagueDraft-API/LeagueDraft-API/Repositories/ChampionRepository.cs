@@ -17,6 +17,9 @@ namespace LeagueDraft_API.Repositories
         }
 
         public async Task<List<Champion>> GetAllChampions() => await _appDbContext.Champions.OrderBy(c => c.Name).ToListAsync();
+
+        public async Task<Champion> GetChampionByRiotChampionId(int riotChampionId) =>
+            await _appDbContext.Champions.Where(c => c.RiotId == riotChampionId).FirstOrDefaultAsync();
         public async Task AddChampion(Champion champion)
         {
             await _appDbContext.Champions.AddAsync(champion);

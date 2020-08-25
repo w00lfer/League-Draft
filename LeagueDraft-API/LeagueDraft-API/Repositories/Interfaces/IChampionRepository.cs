@@ -8,5 +8,6 @@ namespace LeagueDraft_API.Repositories.Interfaces
     {
         Task<List<Champion>> GetAllChampions();
         Task AddChampion(Champion champion);
+        Task<Champion> GetChampionByRiotChampionId(int riotChampionId);
     }
 }

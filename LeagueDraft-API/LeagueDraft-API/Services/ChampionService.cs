@@ -19,8 +19,10 @@ namespace LeagueDraft_API.Services
             _mapper = mapper;
         }
 
-        public async Task<List<ChampionInfo>> GetChampionsInfos() => 
-            _mapper.Map<List<Champion>, List<ChampionInfo>>(await _championRepository.GetAllChampions());
+        public async Task<List<ChampionInfoDTO>> GetChampionsInfos() =>
+            _mapper.Map<List<Champion>, List<ChampionInfoDTO>>(await _championRepository.GetAllChampions());
 
+        public async Task<ChampionInfoDTO> GetChampionInfoByRiotChampionId(int riotChampionId) =>
+            _mapper.Map<Champion, ChampionInfoDTO>(await _championRepository.GetChampionByRiotChampionId(riotChampionId));
     }
 }
