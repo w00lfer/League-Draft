@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectionModel} from "@angular/cdk/collections";
-import {ChampionService} from "../../_services/champion.service";
-import {ChampionInfo} from "../../_models/ChampionInfo";
+import {SelectionModel} from '@angular/cdk/collections';
+import {ChampionService} from '../../_services/champion.service';
+import {ChampionInfo} from '../../_models/ChampionInfo';
 
 export interface Champion {
   name: string;
   position: number;
   iconUrl: string;
 }
-const TableData: ChampionInfo[] = [
-]
 
 @Component({
   selector: 'app-champions',
@@ -18,17 +16,17 @@ const TableData: ChampionInfo[] = [
 })
 export class ChampionsComponent implements OnInit {
   displayedColumns: string[] = ['position', 'championName', 'championIcon', 'championTileIcon', 'addChampion', 'editChampion', 'deleteChampion'];
-  dataSource: ChampionInfo[] = []
+  dataSource: ChampionInfo[] = [];
   selection = new SelectionModel<Champion>(false, []);
 
   constructor(private championService: ChampionService) { }
 
   ngOnInit(): void {
     this.getChampionsInfo();
-    console.log(this.dataSource)
+    console.log(this.dataSource);
   }
 
-  getChampionsInfo() {
+  getChampionsInfo(): void{
     this.championService.getChampionsInfo().subscribe((champions: ChampionInfo[]) => {
       this.dataSource = champions;
     }, error => {
@@ -36,18 +34,18 @@ export class ChampionsComponent implements OnInit {
     });
   }
 
-  addChampion() {
+  addChampion(): void {
 
   }
-  editChampion() {
-
-  }
-
-  deleteChampion() {
+  editChampion(): void {
 
   }
 
-  trackByName(name: string, champion: ChampionInfo) : string {
+  deleteChampion(): void {
+
+  }
+
+  trackByName(name: string, champion: ChampionInfo): string {
     return champion.name;
   }
 

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ChampionService} from "../_services/champion.service";
-import {ChampionInfo} from "../_models/ChampionInfo";
+import {ChampionService} from '../_services/champion.service';
+import {ChampionInfo} from '../_models/ChampionInfo';
 import {
   CdkDrag,
   CdkDragDrop, CdkDragEnter, CdkDragExit,
   CdkDropList,
   moveItemInArray,
   transferArrayItem
-} from "@angular/cdk/drag-drop";
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-free-draft',
@@ -18,11 +18,11 @@ export class FreeDraftComponent implements OnInit{
   championsInfo: ChampionInfo[];
   bluePicks: ChampionInfo[] = [];
   redPicks: ChampionInfo[] = [];
-  championsSearchInput: string = ''
-  blueTeamName: string = 'Blue Team'
-  blueTeamNameCanEdit: boolean = false;
-  redTeamName: string = 'Red Team'
-  redTeamNameCanEdit: boolean = false;
+  championsSearchInput = '';
+  blueTeamName = 'Blue Team';
+  blueTeamNameCanEdit = false;
+  redTeamName = 'Red Team';
+  redTeamNameCanEdit = false;
 
   constructor(private championService: ChampionService) {
   }
@@ -31,15 +31,14 @@ export class FreeDraftComponent implements OnInit{
     this.getChampionsInfo();
   }
 
-  getChampionsInfo() {
+  getChampionsInfo(): void {
     this.championService.getChampionsInfo().subscribe((champions: ChampionInfo[]) => {
-      this.championsInfo = champions
+      this.championsInfo = champions;
     }, error => {
       console.log(error);
     });
   }
-  drop(data: ChampionInfo[], event: CdkDragDrop<ChampionInfo[]>)
-  {
+  drop(data: ChampionInfo[], event: CdkDragDrop<ChampionInfo[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -57,26 +56,19 @@ export class FreeDraftComponent implements OnInit{
     }
   }
 
-  canEnterPicksContainer(data: ChampionInfo[])
-  {
-    return function(drag: CdkDrag, drop: CdkDropList)
+  canEnterPicksContainer(data: ChampionInfo[]) {
+    return function(drag: CdkDrag, drop: CdkDropList): boolean
     {
-      if(drop.data === data && data.length === 5) return false
-      return true
-    }
+      if (drop.data === data && data.length === 5) {  return false; }
+      return true;
+    };
   }
 
-  private sortChampionsArray() : void{
-    this.championsInfo.sort((a,b) => {
-      if (a.name > b.name) return 1;
-      if (a.name < b.name) return -1
+  private sortChampionsArray(): void {
+    this.championsInfo.sort((a, b) => {
+      if (a.name > b.name) { return 1; }
+      if (a.name < b.name) { return -1; }
       return 0;
     });
   }
-  dropChampionIntoMap(data: ChampionInfo[], event: CdkDragDrop<ChampionInfo[]>)
-  {
-    event.item.freeDragPosition.x+= data.length * 32
-    event.item.freeDragPosition.y+= data.length * 32
-  }
-
 }
