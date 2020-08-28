@@ -21,10 +21,10 @@ namespace LeagueDraft_API.Controllers
 
         [HttpGet]
         [Route("SummonerInfo")]
-        public async Task<SummonerInfoDTO> GetSummoner(string region, string summonerName)
+        public async Task<SummonerWithRankedInfoDTO> GetSummoner(string region, string summonerName)
         {
-            var summonerInfo = await _summonerService.GetSummonerByNameAsync(region, summonerName);
-            return summonerInfo;
+            var summonerWithRankedInfo = await _summonerService.GetSummonerByNameAsync(region, summonerName);
+            return summonerWithRankedInfo;
         }
 
         [HttpGet]

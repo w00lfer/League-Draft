@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using LeagueDraft_API.DTO;
 using LeagueDraft_API.DTO.RiotApiDTO;
 using LeagueDraft_API.Models;
@@ -18,6 +19,13 @@ namespace LeagueDraft_API.Mappings
                 .ForMember(dest => dest.ProfileIconUrl, 
                     opts => opts.MapFrom(src => $"assets/img/ProfileIcons/{src.ProfileIconId}.png"))
                 .ForMember(dest => dest.Level, opts => opts.MapFrom(src => src.SummonerLevel));
+            CreateMap<RiotLeagueEntryDTO, RankedInfoDTO>()
+                .ForMember(dest => dest.QueueType, opts => opts.MapFrom(src => src.QueueType.Replace('_', ' ')))
+                .ForMember(dest => dest.TierAndRank, opts => opts.MapFrom(src => $"{src.Tier} {src.Rank}"));
+            CreateMap<SummonerInfoDTO, SummonerWithRankedInfoDTO>()
+                .ForMember(dest => dest.SummonerInfo, opts => opts.MapFrom(src => src));
+            CreateMap<List<RankedInfoDTO>, SummonerWithRankedInfoDTO>()
+                .ForMember(dest => dest.RankedInfo, opts => opts.MapFrom(src => src));
             CreateMap<RiotMatchDTO, MatchInfoDTO>()
                 .ForMember(dest => dest.Players,
                     opts => opts.MapFrom<MatchInfoPlayersResolver>())

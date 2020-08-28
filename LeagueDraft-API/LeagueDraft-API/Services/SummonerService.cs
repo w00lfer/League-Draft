@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using LeagueDraft_API.Extensions;
 
 namespace LeagueDraft_API.Services
 {
@@ -24,13 +25,19 @@ namespace LeagueDraft_API.Services
             _mapper = mapper;
         }
 
-        public async Task<SummonerInfoDTO> GetSummonerByNameAsync(string region, string summonerName)
+        public async Task<SummonerWithRankedInfoDTO> GetSummonerByNameAsync(string region, string summonerName)
         {
             Enum.TryParse(region, out RiotRegionEnum regionEnum);
-            var url = RiotApiUrlHelper.GetUrl(regionEnum, "summoner/v4/summoners/by-name", summonerName);
+            var urlToSummonerDTO = RiotApiUrlHelper.GetUrl(regionEnum, "summoner/v4/summoners/by-name", summonerName);
+            var riotSummonerDTO = await _httpClient.GetFromJsonAsync<RiotSummonerDTO>(urlToSummonerDTO);
+            var summonerInfoDTO = _mapper.Map<SummonerInfoDTO>(riotSummonerDTO);
 
-            var riotSummonerDTO = await _httpClient.GetFromJsonAsync<RiotSummonerDTO>(url);
-            return _mapper.Map<SummonerInfoDTO>(riotSummonerDTO);
+            var urlToLeagueEntryDTO = RiotApiUrlHelper.GetUrl(regionEnum, "league/v4/entries/by-summoner", riotSummonerDTO.Id);
+            var rankedInfoDTO = _mapper.Map<List<RankedInfoDTO>>(await _httpClient.GetFromJsonAsync<List<RiotLeagueEntryDTO>>(urlToLeagueEntryDTO));
+
+            var summonerWithRankedInfoDTO = _mapper.MergeInto<SummonerWithRankedInfoDTO>(summonerInfoDTO, rankedInfoDTO);
+            
+            return summonerWithRankedInfoDTO;
 
         }
 

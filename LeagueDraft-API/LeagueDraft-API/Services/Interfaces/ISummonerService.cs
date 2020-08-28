@@ -6,8 +6,7 @@ namespace LeagueDraft_API.Services.Interfaces
 {
     public interface ISummonerService
     {
-        Task<SummonerInfoDTO> GetSummonerByNameAsync(string region, string summonerName);
-        //Task<List<RiotMatchlistDTO>> GetMatchesForSummoner(string accountId);
+        Task<SummonerWithRankedInfoDTO> GetSummonerByNameAsync(string region, string summonerName);
         Task<List<MatchInfoDTO>> GetMatchesForSummoner(string region, string accountId, int beginIndex, int endIndex);
     }
 }

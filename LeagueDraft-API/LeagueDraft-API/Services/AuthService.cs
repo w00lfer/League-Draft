@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace LeagueDraft_API.Services
             if ((await _userManager.CreateAsync(user, signUpUser.Password)).Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return GetTokenForSignedInUser(user);
+                return await GetTokenForSignedInUser(user);
             } 
             throw new Exception("Can't create user, username, email or password are invalid");
 
@@ -40,18 +41,21 @@ namespace LeagueDraft_API.Services
 
         public async Task<JwtToken> SignInUserAsync(SignInUser signInUser) => await _userManager.FindByNameAsync(signInUser.UserName) is IdentityUser user ?
             (await _signInManager.PasswordSignInAsync(signInUser.UserName, signInUser.Password, false, true)).Succeeded ?
-                GetTokenForSignedInUser(user) :
+                await GetTokenForSignedInUser(user) :
                 throw new Exception("Password is incorrect") :
             throw new Exception("Such a user with this username doesn't exist");
 
         public async Task LogoutAsync() => await _signInManager.SignOutAsync();
 
-        private JwtToken GetTokenForSignedInUser(IdentityUser user)
+        private async Task<JwtToken> GetTokenForSignedInUser(IdentityUser user)
         {
-            var authClaims = new[]
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
+                new Claim("role", userRoles.Count != 0 ? userRoles.FirstOrDefault() : "standard"), 
             };
 
             var authSigningKey =
@@ -61,7 +65,7 @@ namespace LeagueDraft_API.Services
                 issuer: "http://dotnetdetail.net",
                 audience: "http://dotnetdetail.net",
                 expires: DateTime.Now.AddHours(3),
-                claims: authClaims,
+                claims: claims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
             );
 
