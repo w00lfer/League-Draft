@@ -31,6 +31,11 @@ import { FormsModule } from '@angular/forms';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SummonerComponent } from './summoner/summoner.component';
 import {MatSelectModule} from '@angular/material/select';
+import { RegisterComponent } from './register/register.component';
+import { SignInDialogComponent } from './shared/Components/navbar/sign-in-dialog/sign-in-dialog.component';
+import { MatDialogModule} from '@angular/material/dialog';
+import { SummonerSearchBarComponent } from './summoner/summoner-search-bar/summoner-search-bar.component';
+import { SummonerMatchInfoComponent } from './summoner/summoner-match-info/summoner-match-info.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,11 @@ import {MatSelectModule} from '@angular/material/select';
     LiveDraftComponent,
     ChampionsComponent,
     ChampionsFilterPipe,
-    SummonerComponent
+    SummonerComponent,
+    RegisterComponent,
+    SignInDialogComponent,
+    SummonerSearchBarComponent,
+    SummonerMatchInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,11 +76,10 @@ import {MatSelectModule} from '@angular/material/select';
     HttpClientModule,
     FormsModule,
     DragDropModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-// ss

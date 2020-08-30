@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Sign In </h1>
+<div mat-dialog-content>
+  <form class="register-form" fxLayout="column">
+    <mat-form-field >
+      <input  matInput  placeholder="Username" [(ngModel)]="signInUser.username"  name="username"  required>
+    </mat-form-field>
+    <mat-form-field>
+      <input  matInput  placeholder="Password" [(ngModel)]="signInUser.password"  type="password"  name="password"  required>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button  cdkFocusInitial (click)="login()">Login</button>
+</div>

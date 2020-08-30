@@ -1,6 +1,6 @@
 <mat-toolbar>
   <mat-toolbar-row>
-    <button mat-icon-button (click)="toggleSideBar()">
+    <button *ngIf="loggedIn()" mat-icon-button (click)="toggleSideBar()">
       <mat-icon>menu</mat-icon>
     </button>
 
@@ -13,14 +13,22 @@
             <mat-icon>person_outline</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <button *ngIf="loggedIn()" mat-menu-item>
               <mat-icon>settings</mat-icon>
               Settings
             </button>
             <mat-divider></mat-divider>
-            <button mat-menu-item>
+            <button  *ngIf="loggedIn()" mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               Sign out
+            </button>
+            <button *ngIf="!loggedIn()" mat-menu-item routerLink="/register">
+              <mat-icon>login</mat-icon>
+              Register
+            </button>
+            <button *ngIf="!loggedIn()" mat-menu-item (click)="openSignInDialog()">
+              <mat-icon>login</mat-icon>
+              Login
             </button>
           </mat-menu>
         </li>
