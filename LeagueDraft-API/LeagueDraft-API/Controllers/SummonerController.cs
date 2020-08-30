@@ -30,7 +30,7 @@ namespace LeagueDraft_API.Controllers
         [HttpGet]
         [Route("Matches")]
         public async Task<List<MatchInfoDTO>> GetMatchesForSummoner(string region, string accountId, int beginIndex = 0,
-            int endIndex = 0)
+            int endIndex = 10)
         {
             return await _summonerService.GetMatchesForSummoner(region, accountId, beginIndex, endIndex);
         }

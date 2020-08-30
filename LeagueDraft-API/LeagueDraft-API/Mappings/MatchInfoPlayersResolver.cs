@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using LeagueDraft_API.DTO;
 using LeagueDraft_API.DTO.RiotApiDTO;
 using LeagueDraft_API.Services.Interfaces;
@@ -25,8 +26,9 @@ namespace LeagueDraft_API.Mappings
                 matchInfoParticipantDtos.Add(
                     new MatchInfoParticipantDTO
                         {
-                            ChampionInfoDto = _championService.GetChampionInfoByRiotChampionId(riotMatchDto.Participants[index].ChampionId).Result,
-                            Summoner = new MatchInfoParticipantIdentityDTO {AccountId = p.Player.AccountId, SummonerId = p.Player.SummonerId, SummonerName = p.Player.SummonerName}
+                            ChampionInfo = _championService.GetChampionInfoByRiotChampionId(riotMatchDto.Participants[index].ChampionId).Result,
+                            Summoner = new MatchInfoParticipantIdentityDTO {AccountId = p.Player.AccountId, SummonerId = p.Player.SummonerId, SummonerName = p.Player.SummonerName},
+                            TeamId = riotMatchDto.Participants[index].TeamId
                         });
                 index++;
             });
