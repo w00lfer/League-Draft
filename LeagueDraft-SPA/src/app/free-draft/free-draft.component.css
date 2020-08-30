@@ -47,7 +47,6 @@
   margin-right:15px;
   margin-top:10px;
 }
-
 .pick-border{
   border: 1px solid black;
 }
@@ -57,7 +56,6 @@
 .champions .cdk-drag-placeholder{
   display: none
 }
-
 .map-container{
   width: 384px;
   height: 384px;
@@ -65,8 +63,6 @@
   position: relative;
 
 }
-
-
 .map-container .map{
   position: absolute ;
   width: 384px;

@@ -1,0 +1,11 @@
+.mat-form-field-flex {
+  border-radius: 0 4px 0 0 !important;
+}
+.region-mat-form-field .mat-form-field-flex{
+  background-color: #242424 !important;
+  opacity: 75% !important;
+  border-radius: 0 0 0 0 !important;
+}
+.mat-form-field-underline{
+
+}

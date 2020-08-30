@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ChampionService} from '../_services/champion.service';
-import {ChampionInfo} from '../_models/ChampionInfo';
+import {ChampionInfo} from '../_models/champion-info';
 import {
   CdkDrag,
   CdkDragDrop, CdkDragEnter, CdkDragExit,

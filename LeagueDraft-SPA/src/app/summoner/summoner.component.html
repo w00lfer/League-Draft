@@ -1,19 +1,45 @@
-<div  fxLayout="column">
-  <div fxLayout="row" fxLayoutAlign="center" fxFlexOffset="10">
-    <mat-form-field fxFlex="30" color="accent" appearance="fill" class="search-champion-form-field">
-      <mat-label>Summoner's name</mat-label>
-      <input  matInput type="text"  >
-      <button mat-icon-button matSuffix (click)="test">
-        Server
-      </button>
-    </mat-form-field>
-    <mat-form-field fxFlexOffset="5" appearance="fill">
-      <mat-label>Region</mat-label>
-      <mat-select >
-        <mat-option value="primary">EUNE</mat-option>
-        <mat-option value="accent">EUW</mat-option>
-        <mat-option value="warn">NA</mat-option>
-      </mat-select>
-    </mat-form-field>
+<div fxLayout="column" fxFlexFill  fxLayoutAlign="center">
+  <div fxLayout="row" fxFlex="90" fxLayoutAlign="center">
+    <div fxLayout="column" fxFlex="80" >
+      <app-summoner-search-bar fxFlex="10" fxLayoutAlign="center center" ></app-summoner-search-bar>
+      <div *ngIf="summonerInfo != null" fxFlex="90" fxLayout="column">
+        <mat-accordion fxFlex="auto">
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Summoner info
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-panel-description fxLayout="row">
+              <div fxFlex="40">
+                <img src="{{summonerInfo.summonerInfo.profileIconUrl}}"/>
+              </div>
+              <div fxLayout="column" fxFlexOffset="5">
+                <p>{{summonerInfo.summonerInfo.name}}</p>
+                <p>Level: {{summonerInfo.summonerInfo.level}}</p>
+                <p>
+                  {{summonerInfo.rankedInfo[0].queueType}}: {{summonerInfo.rankedInfo[0].tierAndRank}},
+                  {{summonerInfo.rankedInfo[0].leaguePoints}}LP,
+                  {{summonerInfo.rankedInfo[0].wins}}W - {{summonerInfo.rankedInfo[0].losses}}L
+                </p>
+                <p>
+                  {{summonerInfo.rankedInfo[1].queueType}}: {{summonerInfo.rankedInfo[1].tierAndRank}},
+                  {{summonerInfo.rankedInfo[1].leaguePoints}}LP,
+                  {{summonerInfo.rankedInfo[1].wins}}W - {{summonerInfo.rankedInfo[1].losses}}L
+                </p>
+              </div>
+            </mat-panel-description>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <div fxLayout="row"  class="match-and-stats-container" fxFlex="auto" >
+          <div fxFlex="25">
+            <p>test</p>
+          </div>
+          <div fxFlex="75"  class="match-container"  fxLayout="column"  >
+              <app-summoner-match-info [match]="match" summonerName="{{summonerInfo.summonerInfo.name}}" *ngFor="let match of matchlist" ></app-summoner-match-info>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

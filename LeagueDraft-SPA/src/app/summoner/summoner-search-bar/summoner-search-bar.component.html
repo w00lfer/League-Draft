@@ -1,0 +1,17 @@
+ <div fxLayout="row" fxLayoutAlign="center">
+    <mat-form-field class="region-mat-form-field" fxFlex="20" appearance="fill">
+      <mat-label>Region</mat-label>
+      <mat-select>
+        <mat-option value="primary">EUNE</mat-option>
+        <mat-option value="accent">EUW</mat-option>
+        <mat-option value="warn">NA</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="80" color="accent" appearance="fill" class="search-champion-form-field">
+      <mat-label>Summoner's name</mat-label>
+      <input  matInput type="text"  >
+      <button fxFill mat-icon-button matSuffix (click)="test()" >
+        <mat-icon fxFill>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>

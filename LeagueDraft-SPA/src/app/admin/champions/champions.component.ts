@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SelectionModel} from '@angular/cdk/collections';
 import {ChampionService} from '../../_services/champion.service';
-import {ChampionInfo} from '../../_models/ChampionInfo';
+import {ChampionInfo} from '../../_models/champion-info';
 
 export interface Champion {
   name: string;
@@ -43,10 +43,6 @@ export class ChampionsComponent implements OnInit {
 
   deleteChampion(): void {
 
-  }
-
-  trackByName(name: string, champion: ChampionInfo): string {
-    return champion.name;
   }
 
 }
