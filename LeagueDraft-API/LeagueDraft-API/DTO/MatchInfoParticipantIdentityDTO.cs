@@ -1,4 +1,4 @@
-﻿namespace LeagueDraft_API.DTO.RiotApiDTO
+﻿namespace LeagueDraft_API.DTO
 {
     public class MatchInfoParticipantIdentityDTO
     {

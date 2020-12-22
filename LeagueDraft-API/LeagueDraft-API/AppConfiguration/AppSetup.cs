@@ -33,7 +33,7 @@ namespace LeagueDraft_API.AppConfiguration
         private static void AddDatabaseAndIdentity(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DevConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("DockerMssqlConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()

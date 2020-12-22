@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29411.108
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueDraft-API", "LeagueDraft-API.csproj", "{08CF3490-EF7C-4D53-ACA5-14325E8ECEF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueDraft-API", "LeagueDraft-API.csproj", "{08CF3490-EF7C-4D53-ACA5-14325E8ECEF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueDraft-API-Tests", "..\LeagueDraft-API-Tests\LeagueDraft-API-Tests.csproj", "{3E8A44D4-6F8E-41B8-81FB-CC7D2BDC0C42}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{99F963F5-70C0-41C9-A2C0-1BFFB71C9263}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{08CF3490-EF7C-4D53-ACA5-14325E8ECEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08CF3490-EF7C-4D53-ACA5-14325E8ECEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08CF3490-EF7C-4D53-ACA5-14325E8ECEF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E8A44D4-6F8E-41B8-81FB-CC7D2BDC0C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E8A44D4-6F8E-41B8-81FB-CC7D2BDC0C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E8A44D4-6F8E-41B8-81FB-CC7D2BDC0C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E8A44D4-6F8E-41B8-81FB-CC7D2BDC0C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99F963F5-70C0-41C9-A2C0-1BFFB71C9263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99F963F5-70C0-41C9-A2C0-1BFFB71C9263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99F963F5-70C0-41C9-A2C0-1BFFB71C9263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99F963F5-70C0-41C9-A2C0-1BFFB71C9263}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

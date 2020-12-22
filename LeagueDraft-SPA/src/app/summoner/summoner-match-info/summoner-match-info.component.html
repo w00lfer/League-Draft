@@ -1,5 +1,5 @@
 <div fxLayout="row" style="{{match.won ? 'background-color: green;' : 'background-color: red;'}} margin-top: 10px;">
-  <div fxFlex="25">
+  <div fxFlex="25" fxLayoutAlign="center center">
     <img src="{{summoner.championInfo.iconUrl}}" style="height: 80px; width: 80px"/>
   </div>
   <div fxFlex="75" fxLayout="row" fxLayoutAlign="end" class="players-container" >
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div fxFlex="50" fxLayout="column">
-      <div *ngFor="let player of secondTeam" fxLayout="row" fxLayoutAlign="start">
+      <div *ngFor="let player of secondTeam" fxLayout="row" fxLayoutAlign="start center">
         <img src="{{player.championInfo.iconUrl}}" />
         <p>{{player.summoner.summonerName}}</p>
       </div>

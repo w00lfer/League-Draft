@@ -30,6 +30,7 @@ namespace LeagueDraft_API.Mappings
                 .ForMember(dest => dest.Players,
                     opts => opts.MapFrom<MatchInfoPlayersResolver>())
                 .ForMember(dest => dest.Won, opts => opts.MapFrom <MatchInfoWonResolver>());
+            CreateMap<RiotParticipantStatsDTO, MatchInfoParticipantStatsDTO>();
         }
     }
 }

@@ -6,6 +6,7 @@ namespace LeagueDraft_API.DTO
     {
         public MatchInfoParticipantIdentityDTO Summoner { get; set; }
         public ChampionInfoDTO ChampionInfo { get; set; }
+        public MatchInfoParticipantStatsDTO Stats { get; set; }
         public int TeamId { get; set; }
     }
 }

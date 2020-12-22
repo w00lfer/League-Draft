@@ -1,7 +1,6 @@
-﻿namespace LeagueDraft_API.DTO.RiotApiDTO
+﻿namespace LeagueDraft_API.DTO
 {
-    // Flattened a bit DTO from Riot because their DTO had 108 properties, which almost 80% was unneeded for me
-    public class RiotParticipantStatsDTO
+    public class MatchInfoParticipantStatsDTO
     {
         public int Item0 { get; set; }
         public int Item1 { get; set; }
@@ -17,6 +16,5 @@
         public int Kills { get; set; }
         public int Assists { get; set; }
         public int VisionWardsBoughtInGame { get; set; }
-
     }
 }

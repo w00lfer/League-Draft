@@ -1,23 +1,28 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
+using LeagueDraft_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace LeagueDraft_API.AppConfiguration
 {
     public class DbInitializer
     {
+        private readonly AppDbContext _appDbContext;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
 
-        public DbInitializer(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public DbInitializer(AppDbContext appDbContext, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+            _appDbContext = appDbContext;
             _userManager = userManager;
             _roleManager = roleManager;
         }
 
         public async Task SeedData()
         {
+            await _appDbContext.Database.MigrateAsync();
             await SeedRoles();
             await SeedUsers();
         }

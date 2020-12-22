@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  leaguedraft-api:
+    image: ${DOCKER_REGISTRY-}leaguedraftapi
+    build:
+      context: ./LeagueDraft-Api/LeagueDraft-Api/.
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mssql  
+  mssql:
+    image: microsoft/mssql-server-linux
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: Password1
+  leaguedraft-client:
+    build: ./LeagueDraft-SPA/.
+    image: client
+    ports:
+      - "4200:80"
+    depends_on:
+       - leaguedraft-api

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading.Tasks;
+using LeagueDraft_API.Models;
 
 namespace LeagueDraft_API
 {
@@ -21,8 +22,9 @@ namespace LeagueDraft_API
                 {
                     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    var appDbContext = services.GetRequiredService<AppDbContext>();
 
-                    await new DbInitializer(userManager, roleManager).SeedData();
+                    await new DbInitializer(appDbContext, userManager, roleManager).SeedData();
                 }
                 catch (Exception ex)
                 {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using System.Linq;
 
 namespace LeagueDraft_API.Controllers
 {
@@ -32,7 +33,9 @@ namespace LeagueDraft_API.Controllers
         public async Task<List<MatchInfoDTO>> GetMatchesForSummoner(string region, string accountId, int beginIndex = 0,
             int endIndex = 10)
         {
-            return await _summonerService.GetMatchesForSummoner(region, accountId, beginIndex, endIndex);
+            var matches = await _summonerService.GetMatchesForSummoner(region, accountId, beginIndex, endIndex);
+            var nulle = matches.Select(m => m.Players).Select(p => p.Where(p => p.ChampionInfo.Name == "Seraphine"));
+            return matches;
         }
     }
 }
